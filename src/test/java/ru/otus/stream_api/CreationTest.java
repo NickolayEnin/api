@@ -18,7 +18,7 @@ class CreationTest {
         Stream<String> arrayAsStream = Stream.of("a", "b", "c");
         assertThat(arrayAsStream).hasSize(3);
 
-        // Генерация по шаблонц "Строитель":
+        // Генерация по шаблону "Строитель":
         Stream<Object> streamBuilder = Stream.builder().add("a").add("b").build();
         assertThat(streamBuilder).hasSize(2);
 

@@ -41,7 +41,7 @@ class ParallelStreamTest {
 
 //        long actualTotal = aList.parallelStream().reduce(0L, Long::sum).longValue();
 
-        ForkJoinPool customThreadPool = new ForkJoinPool(4);
+        ForkJoinPool customThreadPool = new ForkJoinPool(10);
 
         try {
             long actualTotal = customThreadPool.submit(

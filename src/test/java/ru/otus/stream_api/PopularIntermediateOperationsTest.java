@@ -108,7 +108,7 @@ class PopularIntermediateOperationsTest extends TestCommon {
 
         List<Student> sortedStudents = students.sorted((student, otherStudent) -> {
             if (student.getExamDateTime() == null || otherStudent.getExamDateTime() == null) {
-                return 1;
+                return 0;
             }
             // Даты:
             boolean isAfter = student.getExamDateTime().isAfter(otherStudent.getExamDateTime());
@@ -131,13 +131,13 @@ class PopularIntermediateOperationsTest extends TestCommon {
     @DisplayName("Пропуск (Skip) - 1")
     void students_First_IsSkipped() {
         Stream<Student> students = getStudentsStream();
-        List<Student> nonskippedStudents = students.skip(1L).toList();
+        List<Student> nonskippedStudents = students.skip(1).toList();
         assertThat(nonskippedStudents).hasSize(3);
         assertThat(nonskippedStudents.get(0).getId()).isEqualTo(2);
     }
 
     @Test
-    @DisplayName("Просмотр (Peak) - 1")
+    @DisplayName("Просмотр (Peek) - 1")
     void students_pointsModified_ResultIsReturned() {
         Stream<Student> students = getStudentsStream();
 
@@ -146,7 +146,8 @@ class PopularIntermediateOperationsTest extends TestCommon {
         int modifiedPointsSum = getStudentsStream()
             .map(student -> student.getPoints() * 3)
             .peek(System.out::println)
-            .mapToInt(Integer::intValue).sum();
+            .mapToInt(Integer::intValue)
+            .sum();
 
         assertThat(modifiedPointsSum).isEqualTo(630);
     }

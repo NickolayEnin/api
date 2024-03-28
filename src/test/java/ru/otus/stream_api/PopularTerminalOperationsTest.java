@@ -36,9 +36,7 @@ class PopularTerminalOperationsTest extends TestCommon {
     @DisplayName("Ограничение выборки (Limit) - 1")
     void students_Limited_SelectionIsReturned() {
         Stream<Student> students = getStudentsStream();
-
         Stream<Student> limitedStudents = students.limit(2);
-
         assertThat(limitedStudents).hasSize(2);
     }
 
@@ -46,9 +44,7 @@ class PopularTerminalOperationsTest extends TestCommon {
     @DisplayName("Поиск (Find First & Find Any) - 1")
     void students_Searched_FirstIsReturned() {
         Stream<Student> students = getStudentsStream();
-
         Optional<Student> firstOptional = students.findFirst();
-
         assertThat(firstOptional.orElseThrow().getId()).isEqualTo(1);
     }
 
